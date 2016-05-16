@@ -70,6 +70,8 @@ namespace GoGo_Tester
         private volatile bool StdTestRunning;
         private volatile bool RndTestRunning;
         private volatile bool BndTestRunning;
+
+        public static bool IsIpLoad = false;
         private void Form1_Load(object sender, EventArgs e)
         {
             Icon = Resources.GoGo_logo;
@@ -105,43 +107,9 @@ namespace GoGo_Tester
             BndTestTimer.Elapsed += BndTestTimer_Elapsed;
 
             LoadTestCache();
-            LoadIpPools();
-
+            
             Watch.Start();
 
-            CheckUpdate();
-        }
-
-        private void CheckUpdate()
-        {
-            try
-            {
-                var req = WebRequest.Create(
-                    "https://raw.githubusercontent.com/azzvx/gogotester/2.3/GoGo%20Tester/bin/Release/ver");
-                req.BeginGetResponse(ar =>
-                {
-                    if (!ar.IsCompleted) return;
-
-                    var resps = req.EndGetResponse(ar).GetResponseStream();
-
-                    if (resps == null) return;
-
-                    using (var sr = new StreamReader(resps))
-                    {
-                        if (long.Parse(sr.ReadToEnd()) > Config.Version)
-                            HasUpdate();
-                    }
-                }, null);
-            }
-            catch { }
-        }
-
-        private void HasUpdate()
-        {
-            if (InvokeRequired)
-                Invoke(new MethodInvoker(HasUpdate));
-            else
-                linkLabel1.Text += " - 有可用更新！";
         }
 
         private static readonly Regex RxDomain = new Regex(@"[\w\-\.]+", RegexOptions.Compiled);
@@ -1148,6 +1116,14 @@ namespace GoGo_Tester
 
             foreach (var row in GetInvalidIps())
                 IpTable.Rows.Remove(row);
+        }
+
+        private void 加载ip池以供随机测试ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!IsIpLoad)
+            { LoadIpPools(); IsIpLoad = true; }
+            else
+            { MessageBox.Show("ip已经加载，请不要重复加载"); }
         }
     }
 }
