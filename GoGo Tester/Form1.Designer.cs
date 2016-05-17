@@ -221,7 +221,7 @@
             this.nMaxThreads.Tag = "随机测试和标准测试的最大线程数";
             this.nMaxThreads.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nMaxThreads.Value = new decimal(new int[] {
-            20,
+            100,
             0,
             0,
             0});
