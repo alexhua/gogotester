@@ -1012,10 +1012,6 @@ namespace GoGo_Tester
             ApplyToUserConfig(ipstr);
         }
 
-        private void linkLabel1_DoubleClick(object sender, EventArgs e)
-        {
-            Process.Start("https://code.google.com/p/gogo-tester/");
-        }
 
         private void SaveTestCache()
         {
