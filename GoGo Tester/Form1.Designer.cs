@@ -68,11 +68,11 @@
             this.mBandTest = new System.Windows.Forms.ToolStripMenuItem();
             this.mStopTest = new System.Windows.Forms.ToolStripMenuItem();
             this.mClearRndCache = new System.Windows.Forms.ToolStripMenuItem();
+            this.加载ip池以供随机测试ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dgvIpData = new System.Windows.Forms.DataGridView();
             this.lTip = new System.Windows.Forms.Label();
             this.pbProgress = new System.Windows.Forms.ProgressBar();
             this.lProgress = new System.Windows.Forms.Label();
-            this.加载ip池以供随机测试ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tlpConfig.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nTestCount)).BeginInit();
@@ -529,6 +529,13 @@
             this.mClearRndCache.Text = "清除测试缓存(&C)";
             this.mClearRndCache.Click += new System.EventHandler(this.mClearRndCache_Click);
             // 
+            // 加载ip池以供随机测试ToolStripMenuItem
+            // 
+            this.加载ip池以供随机测试ToolStripMenuItem.Name = "加载ip池以供随机测试ToolStripMenuItem";
+            this.加载ip池以供随机测试ToolStripMenuItem.Size = new System.Drawing.Size(127, 21);
+            this.加载ip池以供随机测试ToolStripMenuItem.Text = "加载ip以供随机测试";
+            this.加载ip池以供随机测试ToolStripMenuItem.Click += new System.EventHandler(this.加载ip池以供随机测试ToolStripMenuItem_Click);
+            // 
             // dgvIpData
             // 
             this.dgvIpData.AllowUserToAddRows = false;
@@ -582,13 +589,6 @@
             this.lProgress.Text = "0 / 0";
             this.lProgress.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lProgress.MouseEnter += new System.EventHandler(this.Tip_MouseEnter);
-            // 
-            // 加载ip池以供随机测试ToolStripMenuItem
-            // 
-            this.加载ip池以供随机测试ToolStripMenuItem.Name = "加载ip池以供随机测试ToolStripMenuItem";
-            this.加载ip池以供随机测试ToolStripMenuItem.Size = new System.Drawing.Size(127, 21);
-            this.加载ip池以供随机测试ToolStripMenuItem.Text = "加载ip以供随机测试";
-            this.加载ip池以供随机测试ToolStripMenuItem.Click += new System.EventHandler(this.加载ip池以供随机测试ToolStripMenuItem_Click);
             // 
             // Form1
             // 

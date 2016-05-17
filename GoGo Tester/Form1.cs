@@ -999,12 +999,6 @@ namespace GoGo_Tester
         {
             if (IsTesting()) return;
 
-            if (!File.Exists("proxy.py"))
-            {
-                MessageBox.Show("请将本程序放入GOAgent目录内！");
-                return;
-            }
-
             var cells = GetSelectdIpCells();
 
             if (cells.Length == 0)
