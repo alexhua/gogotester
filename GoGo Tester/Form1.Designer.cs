@@ -1,4 +1,6 @@
-﻿namespace GoGo_Tester
+﻿using System;
+
+namespace GoGo_Tester
 {
     partial class Form1
     {
@@ -47,8 +49,9 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.mExport = new System.Windows.Forms.ToolStripMenuItem();
             this.mExportSelectedIps = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.mExportAllIps = new System.Windows.Forms.ToolStripMenuItem();
+            this.选中的IP到剪切板ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.全部IP到剪切板jsonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.mRemove = new System.Windows.Forms.ToolStripMenuItem();
             this.mRemoveSelectedIps = new System.Windows.Forms.ToolStripMenuItem();
@@ -335,8 +338,9 @@
             // 
             this.mExport.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mExportSelectedIps,
-            this.toolStripSeparator6,
-            this.mExportAllIps});
+            this.mExportAllIps,
+            this.选中的IP到剪切板ToolStripMenuItem,
+            this.全部IP到剪切板jsonToolStripMenuItem});
             this.mExport.Name = "mExport";
             this.mExport.Size = new System.Drawing.Size(116, 22);
             this.mExport.Text = "导出(&E)";
@@ -344,21 +348,30 @@
             // mExportSelectedIps
             // 
             this.mExportSelectedIps.Name = "mExportSelectedIps";
-            this.mExportSelectedIps.Size = new System.Drawing.Size(186, 22);
-            this.mExportSelectedIps.Text = "选中的IP到剪切板(&S)";
+            this.mExportSelectedIps.Size = new System.Drawing.Size(199, 22);
+            this.mExportSelectedIps.Text = "选中的IP到剪切板ini(&S)";
             this.mExportSelectedIps.Click += new System.EventHandler(this.mExportSelectedIps_Click);
-            // 
-            // toolStripSeparator6
-            // 
-            this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(183, 6);
             // 
             // mExportAllIps
             // 
             this.mExportAllIps.Name = "mExportAllIps";
-            this.mExportAllIps.Size = new System.Drawing.Size(186, 22);
-            this.mExportAllIps.Text = "全部IP到剪切板(&A)";
+            this.mExportAllIps.Size = new System.Drawing.Size(199, 22);
+            this.mExportAllIps.Text = "全部IP到剪切板ini(&A)";
             this.mExportAllIps.Click += new System.EventHandler(this.mExportAllIps_Click);
+            // 
+            // 选中的IP到剪切板ToolStripMenuItem
+            // 
+            this.选中的IP到剪切板ToolStripMenuItem.Name = "选中的IP到剪切板ToolStripMenuItem";
+            this.选中的IP到剪切板ToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+            this.选中的IP到剪切板ToolStripMenuItem.Text = "选中的IP到剪切板json";
+            this.选中的IP到剪切板ToolStripMenuItem.Click += new System.EventHandler(this.选中的IP到剪切板ToolStripMenuItem_Click);
+            // 
+            // 全部IP到剪切板jsonToolStripMenuItem
+            // 
+            this.全部IP到剪切板jsonToolStripMenuItem.Name = "全部IP到剪切板jsonToolStripMenuItem";
+            this.全部IP到剪切板jsonToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+            this.全部IP到剪切板jsonToolStripMenuItem.Text = "全部IP到剪切板json";
+            this.全部IP到剪切板jsonToolStripMenuItem.Click += new System.EventHandler(this.全部IP到剪切板jsonToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
@@ -620,6 +633,8 @@
 
         }
 
+
+
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tlpConfig;
@@ -641,7 +656,6 @@
         private System.Windows.Forms.ToolStripMenuItem mRemoveSelectedIps;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ProgressBar pbProgress;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripMenuItem mExportAllIps;
         private System.Windows.Forms.ToolStripMenuItem mRemoveAllIps;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
@@ -666,6 +680,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem mRemoveInvalidIps;
         private System.Windows.Forms.ToolStripMenuItem 加载ip池以供随机测试ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 选中的IP到剪切板ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 全部IP到剪切板jsonToolStripMenuItem;
     }
 }
 

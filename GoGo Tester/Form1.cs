@@ -107,7 +107,7 @@ namespace GoGo_Tester
             BndTestTimer.Elapsed += BndTestTimer_Elapsed;
 
             LoadTestCache();
-            
+
             Watch.Start();
 
         }
@@ -743,8 +743,8 @@ namespace GoGo_Tester
         private void mRndTest_Click(object sender, EventArgs e)
         {
             if (IsTesting()) return;
-            if(!IsIpLoad)
-            { MessageBox.Show("ip尚未加载，请先加载ip然后点击随机测试");return; }
+            if (!IsIpLoad)
+            { MessageBox.Show("ip尚未加载，请先加载ip然后点击随机测试"); return; }
             var form = new Form2();
             form.ShowDialog(this);
 
@@ -1116,5 +1116,52 @@ namespace GoGo_Tester
             else
             { MessageBox.Show("ip已经加载，请不要重复加载"); }
         }
+        private string BuildIpStringJson(DataGridViewCell[] cells)
+        {
+            var sbd = new StringBuilder(null);
+
+            for (int i = 0; i < cells.Length; i++)
+            {
+                sbd.Append("\"" + cells[i].Value);
+                sbd.Append("\",");
+            }
+
+            return sbd.ToString();
+        }
+        private void 选中的IP到剪切板ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var cells = GetSelectdIpCells();
+
+            if (cells.Length == 0)
+            {
+                MessageBox.Show("没有选中的IP！");
+                return;
+            }
+
+            try
+            {
+                Clipboard.SetText(BuildIpStringJson(cells));
+            }
+            catch (Exception) { MessageBox.Show("操作剪切板可能失败！再试一次吧！"); }
+        }
+
+
+        private void 全部IP到剪切板jsonToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var cells = GetAllIpCells();
+
+            if (cells.Length == 0)
+            {
+                MessageBox.Show("IP列表是空的！");
+                return;
+            }
+
+            try
+            {
+                Clipboard.SetText(BuildIpStringJson(cells));
+            }
+            catch (Exception) { MessageBox.Show("操作剪切板可能失败！再试一次吧！"); }
+        }
+
     }
 }
