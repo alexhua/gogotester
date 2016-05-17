@@ -743,7 +743,8 @@ namespace GoGo_Tester
         private void mRndTest_Click(object sender, EventArgs e)
         {
             if (IsTesting()) return;
-
+            if(!IsIpLoad)
+            { MessageBox.Show("ip尚未加载，请先加载ip然后点击随机测试");return; }
             var form = new Form2();
             form.ShowDialog(this);
 
