@@ -1123,7 +1123,10 @@ namespace GoGo_Tester
             for (int i = 0; i < cells.Length; i++)
             {
                 sbd.Append("\"" + cells[i].Value);
-                sbd.Append("\",");
+                if (i < (cells.Length - 1))
+                { sbd.Append("\","); }
+                else
+                { sbd.Append("\""); }
             }
 
             return sbd.ToString();
