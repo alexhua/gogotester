@@ -212,7 +212,17 @@ namespace GoGo_Tester
             // nMaxThreads
             // 
             this.nMaxThreads.Dock = System.Windows.Forms.DockStyle.Top;
+            this.nMaxThreads.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             this.nMaxThreads.Location = new System.Drawing.Point(38, 3);
+            this.nMaxThreads.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.nMaxThreads.Minimum = new decimal(new int[] {
             1,
             0,
@@ -224,7 +234,7 @@ namespace GoGo_Tester
             this.nMaxThreads.Tag = "随机测试和标准测试的最大线程数";
             this.nMaxThreads.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nMaxThreads.Value = new decimal(new int[] {
-            100,
+            20,
             0,
             0,
             0});
