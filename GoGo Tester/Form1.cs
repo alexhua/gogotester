@@ -97,13 +97,13 @@ namespace GoGo_Tester
             dgvIpData.Columns[4].Width = 80;
             dgvIpData.Columns[4].HeaderText = "速度";
 
-            StdTestTimer.Interval = 50;
+            StdTestTimer.Interval = 10;
             StdTestTimer.Elapsed += StdTestTimerElapsed;
 
-            RndTestTimer.Interval = 50;
+            RndTestTimer.Interval = 10;
             RndTestTimer.Elapsed += RndTestTimerElapsed;
 
-            BndTestTimer.Interval = 50;
+            BndTestTimer.Interval = 10;
             BndTestTimer.Elapsed += BndTestTimer_Elapsed;
 
             LoadTestCache();
