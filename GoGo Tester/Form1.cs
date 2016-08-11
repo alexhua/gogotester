@@ -449,7 +449,7 @@ namespace GoGo_Tester
                         ssls.AuthenticateAsClient(string.Empty);
                         if (ssls.IsAuthenticated)
                         {
-                            var data = Encoding.UTF8.GetBytes(string.Format("HEAD /search?q=g HTTP/1.1\r\nHost: www.google.com.hk\r\n\r\nGET /{0} HTTP/1.1\r\nHost: azzvxgoagent{1}.appspot.com\r\nConnection: close\r\n\r\n", Application.ProductVersion, Rand.Next(7)));
+                            var data = Encoding.UTF8.GetBytes(string.Format("HEAD / HTTP/1.1\r\nHost:www.google.com\r\nConnection:Close\r\n\r\n", Application.ProductVersion, Rand.Next(7)));
 
                             ssls.Write(data);
                             ssls.Flush();
@@ -467,25 +467,22 @@ namespace GoGo_Tester
                                 {
                                     info.HttpMsg = "NN";
 
-                                    var ms = RxResult.Matches(text);
-                                    for (var i = 0; i < ms.Count; i++)
+                                    if (text.IndexOf("gws") != -1)
                                     {
-                                        if (ms[i].Groups[2].Value == "200" && ++i < ms.Count)
-                                            switch (ms[i].Groups[3].Value)
-                                            {
-                                                case "gws\r":
-                                                    info.HttpOk = true;
-                                                    info.HttpMsg = "G" + info.HttpMsg[1];
-                                                    break;
-                                                case "Google Frontend\r":
-                                                    info.HttpOk = true;
-                                                    info.HttpMsg = info.HttpMsg[0] + "A";
-                                                    break;
-                                                default:
-                                                    i--;
-                                                    break;
-                                            }
+                                        info.HttpOk = true;
+                                        info.HttpMsg = "G" + info.HttpMsg[1];
                                     }
+                                    else if (text.IndexOf("Server: gvs 1.0") != -1)
+                                    {
+                                        info.HttpOk = true;
+                                        info.HttpMsg = "GVS";
+                                    }
+                                    else if (text.IndexOf("Google Frontend") != -1)
+                                    { 
+                                        info.HttpOk = true;
+                                        info.HttpMsg = info.HttpMsg[0] + "A";
+                                    }
+
                                 }
                             }
                         }
