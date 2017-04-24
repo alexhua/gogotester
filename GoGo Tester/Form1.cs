@@ -339,7 +339,7 @@ namespace GoGo_Tester
                                 ssls.AuthenticateAsClient(string.Empty);
                                 if (ssls.IsAuthenticated)
                                 {
-                                    var data = Encoding.UTF8.GetBytes("GET /p/gogo-tester/source/browse/1m.wiki?repo=wiki HTTP/1.1\r\nHost: code.google.com\r\nConnection: close\r\n\r\n");
+                                    var data = Encoding.UTF8.GetBytes("GET intl/zh-CN/ime/pinyin/dictapi.html HTTP/1.1\r\nHost: www.google.com\r\nConnection: close\r\n\r\n");
                                     var time = Watch.ElapsedMilliseconds;
                                     ssls.Write(data, 0, data.Length);
                                     ssls.Flush();
