@@ -66,28 +66,7 @@ namespace GoGo_Tester
 
         public override string ToString()
         {
-            if (AddressBytes.Length == 4)
-                return string.Format("{0}.{1}.{2}.{3}",
-                    AddressBytes[0].ToString("D"), AddressBytes[1].ToString("D"), AddressBytes[2].ToString("D"), AddressBytes[3].ToString("D"));
-
-            var sbd = new StringBuilder();
-            for (int i = 0; i < AddressBytes.Length; i++)
-            {
-                if (i > 0 && i % 2 == 0)
-                    sbd.Append(":");
-                sbd.Append(AddressBytes[i].ToString("X02"));
-            }
-
-            while (sbd[0] == '0')
-                sbd.Remove(0, 1);
-
-            var fstr = sbd.Replace("0000", "").ToString();
-            while (fstr.Contains(":0"))
-                fstr = fstr.Replace(":0", ":");
-            while (fstr.Contains(":::"))
-                fstr = fstr.Replace(":::", "::");
-
-            return fstr;
+            return GetIpAddress().ToString();
         }
 
         public static Ip Parse(string str)

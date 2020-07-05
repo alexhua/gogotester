@@ -42,14 +42,14 @@ namespace GoGo_Tester
             Monitor.Exit(q);
         }
 
-        public Form1()
+        public Form1() 
         {
             InitializeComponent();
         }
 
         private static readonly Random Rand = new Random();
         private static readonly Regex RxMatchIPv4 = new Regex(@"(?<!:)((2(5[0-5]|[0-4]\d)|1?\d?\d)\.){3}(2(5[0-5]|[0-4]\d)|1?\d?\d)", RegexOptions.Compiled);
-        private static readonly Regex RxMatchIPv6 = new Regex(@"(?:^|(?<=\W|\D))(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))(?!\w|\d)", RegexOptions.Compiled);
+        private static readonly Regex RxMatchIPv6 = new Regex(@"(?:^|(?<=\W|\D))(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))(?!\w|\d|:)", RegexOptions.Compiled);
 
         private static readonly Stopwatch Watch = new Stopwatch();
         private static readonly SoundPlayer SoundPlayer = new SoundPlayer { Stream = Resources.Windows_Ding };
@@ -58,6 +58,7 @@ namespace GoGo_Tester
         private string CurAddrPool;
         private List<Ip> CurAddrList = new List<Ip>();
         private readonly DataTable IpTable = new DataTable();
+        private readonly BindingSource BindingSource = new BindingSource();
         private readonly Timer StdTestTimer = new Timer();
         private readonly Timer RndTestTimer = new Timer();
         private readonly Timer BndTestTimer = new Timer();
@@ -85,12 +86,13 @@ namespace GoGo_Tester
             IpTable.Columns.Add(new DataColumn("pass", typeof(string)));
             IpTable.Columns.Add(new DataColumn("band", typeof(string)));
 
-            dgvIpData.DataSource = IpTable;
-            dgvIpData.Columns[0].Width = 140;
+            BindingSource.DataSource = IpTable;
+            dgvIpData.DataSource = BindingSource;
+            dgvIpData.Columns[0].Width = 100;
             dgvIpData.Columns[0].HeaderText = "地址";
             dgvIpData.Columns[1].Width = 60;
             dgvIpData.Columns[1].HeaderText = "端口";
-            dgvIpData.Columns[2].Width = 100;
+            dgvIpData.Columns[2].Width = 200;
             dgvIpData.Columns[2].HeaderText = "证书";
             dgvIpData.Columns[3].Width = 40;
             dgvIpData.Columns[3].HeaderText = "计数";
@@ -109,7 +111,6 @@ namespace GoGo_Tester
             LoadTestCache();
 
             Watch.Start();
-
         }
 
         private static readonly Regex RxDomain = new Regex(@"[\w\-\.]+", RegexOptions.Compiled);
@@ -339,7 +340,7 @@ namespace GoGo_Tester
                                 ssls.AuthenticateAsClient(string.Empty);
                                 if (ssls.IsAuthenticated)
                                 {
-                                    var data = Encoding.UTF8.GetBytes("GET intl/zh-CN/ime/pinyin/dictapi.html HTTP/1.1\r\nHost: www.google.com\r\nConnection: close\r\n\r\n");
+                                    var data = Encoding.UTF8.GetBytes("GET /inputtools/ HTTP/1.1\r\nHost: www.google.com\r\nConnection: close\r\n\r\n");
                                     var time = Watch.ElapsedMilliseconds;
                                     ssls.Write(data, 0, data.Length);
                                     ssls.Flush();
@@ -397,7 +398,9 @@ namespace GoGo_Tester
                         Thread.Sleep(1000);
                     }
                     if (socket.Connected)
+                    {
                         socket.Disconnect(true);
+                    }
                 } while (info.PassCount < Config.PassCount);
             }
             return info;
@@ -413,22 +416,27 @@ namespace GoGo_Tester
 
                     info.PortTime += Watch.ElapsedMilliseconds - time;
                     info.PortOk = true;
-                    info.PortMsg = "_OK ";
+                    info.PortMsg = "OK ";
                 }
                 else
                 {
-                    info.PortOk = false;
-                    info.PortMsg = "Timeout";
-                    info.HttpMsg = "NN PortInvalid";
+                    if (info.PassCount == 0)
+                    {
+                        info.PortOk = false;
+                        info.PortMsg = "Timeout";
+                        info.HttpMsg = "NN PortInvalid";
+                    }
                 }
             }
             catch (Exception ex)
             {
-                info.PortOk = false;
-                info.PortMsg = ex.Message;
-                info.HttpMsg = "NN PortInvalid";
+                if (info.PassCount == 0)
+                {
+                    info.PortOk = false;
+                    info.PortMsg = ex.Message;
+                    info.HttpMsg = "NN PortInvalid";
+                }
             }
-
             return info.PortOk;
         }
         private static readonly Regex RxResult = new Regex(@"^(HTTP/... (\d+).*|Server:\s*(\w.*))$", RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.Multiline);
@@ -449,7 +457,7 @@ namespace GoGo_Tester
                         ssls.AuthenticateAsClient(string.Empty);
                         if (ssls.IsAuthenticated)
                         {
-                            var data = Encoding.UTF8.GetBytes(string.Format("HEAD / HTTP/1.1\r\nHost:www.google.com\r\nConnection:Close\r\n\r\n", Application.ProductVersion, Rand.Next(7)));
+                            var data = Encoding.UTF8.GetBytes("HEAD / HTTP/1.1\r\nHost:www.google.com\r\n\r\nHEAD / HTTP/1.1\r\nHost:xx-net.appspot.com\r\nConnection:Close\r\n\r\n");
 
                             ssls.Write(data);
                             ssls.Flush();
@@ -467,20 +475,20 @@ namespace GoGo_Tester
                                 {
                                     info.HttpMsg = "NN";
 
-                                    if (text.IndexOf("gws") != -1)
+                                    if (text.Contains("gws"))
                                     {
                                         info.HttpOk = true;
-                                        info.HttpMsg = "G" + info.HttpMsg[1];
+                                        info.HttpMsg = "GWS";
                                     }
-                                    else if (text.IndexOf("Server: gvs 1.0") != -1)
+                                    else if (text.Contains("Server: gvs 1.0"))
                                     {
                                         info.HttpOk = true;
                                         info.HttpMsg = "GVS";
                                     }
-                                    else if (text.IndexOf("Google Frontend") != -1)
+                                    else if (text.Contains("Google Frontend"))
                                     { 
                                         info.HttpOk = true;
-                                        info.HttpMsg = info.HttpMsg[0] + "A";
+                                        info.HttpMsg = "GAE";
                                     }
 
                                 }
@@ -499,7 +507,6 @@ namespace GoGo_Tester
                 info.HttpOk = false;
                 info.HttpMsg = "NN " + ex.Message;
             }
-
             return info.HttpOk;
         }
         #endregion
@@ -571,12 +578,8 @@ namespace GoGo_Tester
             }
             else
             {
-                dgvIpData.DataSource = null;
                 foreach (var addr in addrs)
                     ImportIp(addr);
-
-                dgvIpData.DataSource = IpTable;
-
             }
         }
         private void RemoveAllIps()
@@ -613,7 +616,7 @@ namespace GoGo_Tester
             if (InvokeRequired)
                 return (DataRow[])Invoke(new MethodInvoker(() => SelectBandNa()));
             else
-                return IpTable.Select("band = 'n/a' and port like '_OK%' and sslc not like 'NN%'");
+                return IpTable.Select("band = 'n/a' and port like 'OK%' and sslc not like 'NN%'");
         }
         private void SetAllNa()
         {
@@ -631,16 +634,13 @@ namespace GoGo_Tester
 
         private void Tip_MouseEnter(object sender, EventArgs e)
         {
-            var control = sender as Control;
-
-            if (control != null)
+            if (sender is Control control)
             {
                 lTip.Text = control.Tag.ToString();
             }
             else
             {
-                var menu = sender as ToolStripMenuItem;
-                if (menu != null)
+                if (sender is ToolStripMenuItem menu)
                 {
                     lTip.Text = menu.Tag.ToString();
                 }
@@ -764,22 +764,33 @@ namespace GoGo_Tester
 
             WaitQueue.Clear();
 
-            var rows = SelectPortNa();
+            if (dgvIpData.SelectedRows.Count > 1)
+            {
+                foreach (DataGridViewRow row in dgvIpData.SelectedRows)
+                { 
+                    WaitQueue.Enqueue(Ip.Parse(row.Cells[0].Value.ToString()));
+                    row.Cells[4].Value = row.Cells[3].Value = row.Cells[2].Value = row.Cells[1].Value = "n/a";
+                }
+                pbProgress.Value = 0;
+                pbProgress.Maximum = dgvIpData.SelectedRows.Count;
+            }
+            else
+            {
+                var rows = SelectPortNa();
 
-            if (rows.Length == 0)
-                if (MessageBox.Show(this, "没有发现未测试的IP！是否重复测试已测试的IP？", "请确认操作", MessageBoxButtons.OKCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2) == DialogResult.OK)
-                    SetAllNa();
-                else
-                    return;
+                if (rows.Length == 0)
+                    if (MessageBox.Show(this, "没有发现未测试的IP！是否重复测试已测试的IP？", "请确认操作", MessageBoxButtons.OKCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2) == DialogResult.OK)
+                        SetAllNa();
+                    else
+                        return;
 
-            rows = SelectPortNa();
+                rows = SelectPortNa();
+                foreach (var row in rows)
+                    WaitQueue.Enqueue(Ip.Parse(row[0].ToString()));
+                pbProgress.Value = 0;
+                pbProgress.Maximum = rows.Length;
 
-            pbProgress.Maximum = rows.Length;
-            pbProgress.Value = 0;
-
-            foreach (var row in rows)
-                WaitQueue.Enqueue(Ip.Parse(row[0].ToString()));
-
+            }
             StdTestRunning = true;
             StdTestTimer.Start();
             tlpConfig.Enabled = false;
@@ -1064,7 +1075,7 @@ namespace GoGo_Tester
         private DataRow[] GetInvalidIps()
         {
             return SelectByExpr(
-                string.Format("(port <> 'n/a' and port not like '_OK%') or (sslc <> 'n/a' and sslc like 'NN%')"));
+                string.Format("(port <> 'n/a' and port not like 'OK%') or (sslc <> 'n/a' and sslc like 'NN%')"));
         }
 
 
@@ -1106,14 +1117,14 @@ namespace GoGo_Tester
                 IpTable.Rows.Remove(row);
         }
 
-        private void 加载ip池以供随机测试ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mLoadIpPool_Click(object sender, EventArgs e)
         {
             if (!IsIpLoad)
             { LoadIpPools(); IsIpLoad = true; }
             else
             { MessageBox.Show("ip已经加载，请不要重复加载"); }
         }
-        private string BuildIpStringJson(DataGridViewCell[] cells)
+        private string mBuildIpStringJson(DataGridViewCell[] cells)
         {
             var sbd = new StringBuilder(null);
 
@@ -1128,7 +1139,7 @@ namespace GoGo_Tester
 
             return sbd.ToString();
         }
-        private void 选中的IP到剪切板ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mExportSelectedIp_Click(object sender, EventArgs e)
         {
             var cells = GetSelectdIpCells();
 
@@ -1140,13 +1151,13 @@ namespace GoGo_Tester
 
             try
             {
-                Clipboard.SetText(BuildIpStringJson(cells));
+                Clipboard.SetText(mBuildIpStringJson(cells));
             }
             catch (Exception) { MessageBox.Show("操作剪切板可能失败！再试一次吧！"); }
         }
 
 
-        private void 全部IP到剪切板jsonToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mExportAllIpsAsJson_Click(object sender, EventArgs e)
         {
             var cells = GetAllIpCells();
 
@@ -1158,10 +1169,9 @@ namespace GoGo_Tester
 
             try
             {
-                Clipboard.SetText(BuildIpStringJson(cells));
+                Clipboard.SetText(mBuildIpStringJson(cells));
             }
             catch (Exception) { MessageBox.Show("操作剪切板可能失败！再试一次吧！"); }
         }
-
     }
 }

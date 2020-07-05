@@ -31,6 +31,7 @@ namespace GoGo_Tester
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tlpConfig = new System.Windows.Forms.TableLayoutPanel();
             this.label5 = new System.Windows.Forms.Label();
             this.tbIpRange = new System.Windows.Forms.TextBox();
@@ -49,9 +50,12 @@ namespace GoGo_Tester
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.mExport = new System.Windows.Forms.ToolStripMenuItem();
             this.mExportSelectedIps = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.mExportAllIps = new System.Windows.Forms.ToolStripMenuItem();
-            this.选中的IP到剪切板ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.全部IP到剪切板jsonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.mExportSelectedIpAsJson = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
+            this.mExportAllIpsAsJson = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.mRemove = new System.Windows.Forms.ToolStripMenuItem();
             this.mRemoveSelectedIps = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,7 +75,7 @@ namespace GoGo_Tester
             this.mBandTest = new System.Windows.Forms.ToolStripMenuItem();
             this.mStopTest = new System.Windows.Forms.ToolStripMenuItem();
             this.mClearRndCache = new System.Windows.Forms.ToolStripMenuItem();
-            this.加载ip池以供随机测试ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mLoadIpPool = new System.Windows.Forms.ToolStripMenuItem();
             this.dgvIpData = new System.Windows.Forms.DataGridView();
             this.lTip = new System.Windows.Forms.Label();
             this.pbProgress = new System.Windows.Forms.ProgressBar();
@@ -104,7 +108,7 @@ namespace GoGo_Tester
             this.tlpConfig.Controls.Add(this.cbPools, 3, 0);
             this.tlpConfig.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpConfig.Location = new System.Drawing.Point(4, 611);
-            this.tlpConfig.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tlpConfig.Margin = new System.Windows.Forms.Padding(4);
             this.tlpConfig.Name = "tlpConfig";
             this.tlpConfig.RowCount = 2;
             this.tlpConfig.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -128,7 +132,7 @@ namespace GoGo_Tester
             // 
             this.tbIpRange.Dock = System.Windows.Forms.DockStyle.Top;
             this.tbIpRange.Location = new System.Drawing.Point(95, 4);
-            this.tbIpRange.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbIpRange.Margin = new System.Windows.Forms.Padding(4);
             this.tbIpRange.Name = "tbIpRange";
             this.tbIpRange.Size = new System.Drawing.Size(906, 25);
             this.tbIpRange.TabIndex = 1;
@@ -142,7 +146,7 @@ namespace GoGo_Tester
             this.bAddIpRange.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.bAddIpRange.Dock = System.Windows.Forms.DockStyle.Fill;
             this.bAddIpRange.Location = new System.Drawing.Point(1009, 4);
-            this.bAddIpRange.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.bAddIpRange.Margin = new System.Windows.Forms.Padding(4);
             this.bAddIpRange.Name = "bAddIpRange";
             this.bAddIpRange.Padding = new System.Windows.Forms.Padding(13, 0, 13, 0);
             this.bAddIpRange.Size = new System.Drawing.Size(73, 25);
@@ -173,7 +177,7 @@ namespace GoGo_Tester
             this.tableLayoutPanel2.Controls.Add(this.nPingTimeout, 3, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(4, 37);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -184,7 +188,7 @@ namespace GoGo_Tester
             // 
             this.nTestCount.Dock = System.Windows.Forms.DockStyle.Top;
             this.nTestCount.Location = new System.Drawing.Point(893, 4);
-            this.nTestCount.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.nTestCount.Margin = new System.Windows.Forms.Padding(4);
             this.nTestCount.Minimum = new decimal(new int[] {
             1,
             0,
@@ -225,7 +229,7 @@ namespace GoGo_Tester
             0,
             0});
             this.nMaxThreads.Location = new System.Drawing.Point(49, 4);
-            this.nMaxThreads.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.nMaxThreads.Margin = new System.Windows.Forms.Padding(4);
             this.nMaxThreads.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -285,7 +289,7 @@ namespace GoGo_Tester
             0,
             0});
             this.nPingTimeout.Location = new System.Drawing.Point(471, 4);
-            this.nPingTimeout.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.nPingTimeout.Margin = new System.Windows.Forms.Padding(4);
             this.nPingTimeout.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -302,7 +306,7 @@ namespace GoGo_Tester
             this.nPingTimeout.Tag = "Ping的延时。";
             this.nPingTimeout.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nPingTimeout.Value = new decimal(new int[] {
-            1200,
+            3000,
             0,
             0,
             0});
@@ -313,7 +317,7 @@ namespace GoGo_Tester
             this.cbPools.Dock = System.Windows.Forms.DockStyle.Left;
             this.cbPools.FormattingEnabled = true;
             this.cbPools.Location = new System.Drawing.Point(1090, 4);
-            this.cbPools.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbPools.Margin = new System.Windows.Forms.Padding(4);
             this.cbPools.Name = "cbPools";
             this.cbPools.Size = new System.Drawing.Size(151, 23);
             this.cbPools.TabIndex = 28;
@@ -348,8 +352,8 @@ namespace GoGo_Tester
             // mImportIpsInClipbord
             // 
             this.mImportIpsInClipbord.Name = "mImportIpsInClipbord";
-            this.mImportIpsInClipbord.Size = new System.Drawing.Size(230, 26);
-            this.mImportIpsInClipbord.Text = "剪切板中存在的IP(&C)";
+            this.mImportIpsInClipbord.Size = new System.Drawing.Size(200, 26);
+            this.mImportIpsInClipbord.Text = "剪切板中的IP(&C)";
             this.mImportIpsInClipbord.Click += new System.EventHandler(this.mImportIpsInClipbord_Click);
             // 
             // toolStripSeparator1
@@ -361,9 +365,12 @@ namespace GoGo_Tester
             // 
             this.mExport.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mExportSelectedIps,
+            this.toolStripSeparator6,
             this.mExportAllIps,
-            this.选中的IP到剪切板ToolStripMenuItem,
-            this.全部IP到剪切板jsonToolStripMenuItem});
+            this.toolStripSeparator7,
+            this.mExportSelectedIpAsJson,
+            this.toolStripSeparator9,
+            this.mExportAllIpsAsJson});
             this.mExport.Name = "mExport";
             this.mExport.Size = new System.Drawing.Size(129, 24);
             this.mExport.Text = "导出(&E)";
@@ -371,30 +378,45 @@ namespace GoGo_Tester
             // mExportSelectedIps
             // 
             this.mExportSelectedIps.Name = "mExportSelectedIps";
-            this.mExportSelectedIps.Size = new System.Drawing.Size(246, 26);
-            this.mExportSelectedIps.Text = "选中的IP到剪切板ini(&S)";
+            this.mExportSelectedIps.Size = new System.Drawing.Size(203, 26);
+            this.mExportSelectedIps.Text = "选中的IP (INI)";
             this.mExportSelectedIps.Click += new System.EventHandler(this.mExportSelectedIps_Click);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(200, 6);
             // 
             // mExportAllIps
             // 
             this.mExportAllIps.Name = "mExportAllIps";
-            this.mExportAllIps.Size = new System.Drawing.Size(246, 26);
-            this.mExportAllIps.Text = "全部IP到剪切板ini(&A)";
+            this.mExportAllIps.Size = new System.Drawing.Size(203, 26);
+            this.mExportAllIps.Text = "全部IP (INI)";
             this.mExportAllIps.Click += new System.EventHandler(this.mExportAllIps_Click);
             // 
-            // 选中的IP到剪切板ToolStripMenuItem
+            // toolStripSeparator7
             // 
-            this.选中的IP到剪切板ToolStripMenuItem.Name = "选中的IP到剪切板ToolStripMenuItem";
-            this.选中的IP到剪切板ToolStripMenuItem.Size = new System.Drawing.Size(246, 26);
-            this.选中的IP到剪切板ToolStripMenuItem.Text = "选中的IP到剪切板json";
-            this.选中的IP到剪切板ToolStripMenuItem.Click += new System.EventHandler(this.选中的IP到剪切板ToolStripMenuItem_Click);
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(200, 6);
             // 
-            // 全部IP到剪切板jsonToolStripMenuItem
+            // mExportSelectedIpAsJson
             // 
-            this.全部IP到剪切板jsonToolStripMenuItem.Name = "全部IP到剪切板jsonToolStripMenuItem";
-            this.全部IP到剪切板jsonToolStripMenuItem.Size = new System.Drawing.Size(246, 26);
-            this.全部IP到剪切板jsonToolStripMenuItem.Text = "全部IP到剪切板json";
-            this.全部IP到剪切板jsonToolStripMenuItem.Click += new System.EventHandler(this.全部IP到剪切板jsonToolStripMenuItem_Click);
+            this.mExportSelectedIpAsJson.Name = "mExportSelectedIpAsJson";
+            this.mExportSelectedIpAsJson.Size = new System.Drawing.Size(203, 26);
+            this.mExportSelectedIpAsJson.Text = "选中的IP (JSON)";
+            this.mExportSelectedIpAsJson.Click += new System.EventHandler(this.mExportSelectedIp_Click);
+            // 
+            // toolStripSeparator9
+            // 
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            this.toolStripSeparator9.Size = new System.Drawing.Size(200, 6);
+            // 
+            // mExportAllIpsAsJson
+            // 
+            this.mExportAllIpsAsJson.Name = "mExportAllIpsAsJson";
+            this.mExportAllIpsAsJson.Size = new System.Drawing.Size(203, 26);
+            this.mExportAllIpsAsJson.Text = "全部IP (JSON)";
+            this.mExportAllIpsAsJson.Click += new System.EventHandler(this.mExportAllIpsAsJson_Click);
             // 
             // toolStripSeparator2
             // 
@@ -495,7 +517,7 @@ namespace GoGo_Tester
             this.tableLayoutPanel1.Controls.Add(this.lProgress, 1, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(4, 4);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 6;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -517,7 +539,7 @@ namespace GoGo_Tester
             this.mBandTest,
             this.mStopTest,
             this.mClearRndCache,
-            this.加载ip池以供随机测试ToolStripMenuItem});
+            this.mLoadIpPool});
             this.msMain.Location = new System.Drawing.Point(0, 0);
             this.msMain.Name = "msMain";
             this.msMain.Size = new System.Drawing.Size(1254, 28);
@@ -567,26 +589,35 @@ namespace GoGo_Tester
             this.mClearRndCache.Text = "清除测试缓存(&C)";
             this.mClearRndCache.Click += new System.EventHandler(this.mClearRndCache_Click);
             // 
-            // 加载ip池以供随机测试ToolStripMenuItem
+            // mLoadIpPool
             // 
-            this.加载ip池以供随机测试ToolStripMenuItem.Name = "加载ip池以供随机测试ToolStripMenuItem";
-            this.加载ip池以供随机测试ToolStripMenuItem.Size = new System.Drawing.Size(157, 24);
-            this.加载ip池以供随机测试ToolStripMenuItem.Text = "加载ip以供随机测试";
-            this.加载ip池以供随机测试ToolStripMenuItem.Click += new System.EventHandler(this.加载ip池以供随机测试ToolStripMenuItem_Click);
+            this.mLoadIpPool.Name = "mLoadIpPool";
+            this.mLoadIpPool.Size = new System.Drawing.Size(99, 24);
+            this.mLoadIpPool.Text = "加载IP池(&L)";
+            this.mLoadIpPool.Click += new System.EventHandler(this.mLoadIpPool_Click);
             // 
             // dgvIpData
             // 
             this.dgvIpData.AllowUserToAddRows = false;
-            this.dgvIpData.AllowUserToDeleteRows = false;
+            this.dgvIpData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvIpData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tableLayoutPanel1.SetColumnSpan(this.dgvIpData, 2);
             this.dgvIpData.ContextMenuStrip = this.cmsIpData;
             this.dgvIpData.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvIpData.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2;
             this.dgvIpData.Location = new System.Drawing.Point(4, 52);
-            this.dgvIpData.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvIpData.Margin = new System.Windows.Forms.Padding(4);
             this.dgvIpData.Name = "dgvIpData";
             this.dgvIpData.ReadOnly = true;
-            this.dgvIpData.RowHeadersWidth = 51;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvIpData.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvIpData.RowHeadersWidth = 50;
             this.dgvIpData.RowTemplate.Height = 23;
             this.dgvIpData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvIpData.Size = new System.Drawing.Size(1246, 551);
@@ -605,7 +636,7 @@ namespace GoGo_Tester
             this.lTip.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lTip.MinimumSize = new System.Drawing.Size(0, 56);
             this.lTip.Name = "lTip";
-            this.lTip.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lTip.Padding = new System.Windows.Forms.Padding(4);
             this.lTip.Size = new System.Drawing.Size(1246, 56);
             this.lTip.TabIndex = 12;
             // 
@@ -613,7 +644,7 @@ namespace GoGo_Tester
             // 
             this.pbProgress.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbProgress.Location = new System.Drawing.Point(4, 32);
-            this.pbProgress.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pbProgress.Margin = new System.Windows.Forms.Padding(4);
             this.pbProgress.Name = "pbProgress";
             this.pbProgress.Size = new System.Drawing.Size(1059, 12);
             this.pbProgress.Step = 1;
@@ -639,10 +670,11 @@ namespace GoGo_Tester
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1262, 753);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.KeyPreview = true;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(634, 488);
             this.Name = "Form1";
-            this.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Padding = new System.Windows.Forms.Padding(4);
             this.Text = "GoGo Tester";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -692,7 +724,6 @@ namespace GoGo_Tester
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
         private System.Windows.Forms.ToolStripMenuItem mRemoveIpsInClipbord;
         private System.Windows.Forms.Label lProgress;
-        private System.Windows.Forms.DataGridView dgvIpData;
         private System.Windows.Forms.NumericUpDown nMaxThreads;
         private System.Windows.Forms.Label lTip;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
@@ -710,9 +741,13 @@ namespace GoGo_Tester
         private System.Windows.Forms.ComboBox cbPools;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem mRemoveInvalidIps;
-        private System.Windows.Forms.ToolStripMenuItem 加载ip池以供随机测试ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 选中的IP到剪切板ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 全部IP到剪切板jsonToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mLoadIpPool;
+        private System.Windows.Forms.ToolStripMenuItem mExportSelectedIpAsJson;
+        private System.Windows.Forms.ToolStripMenuItem mExportAllIpsAsJson;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        private System.Windows.Forms.DataGridView dgvIpData;
     }
 }
 
