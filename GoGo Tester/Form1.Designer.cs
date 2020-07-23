@@ -31,7 +31,6 @@ namespace GoGo_Tester
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tlpConfig = new System.Windows.Forms.TableLayoutPanel();
             this.label5 = new System.Windows.Forms.Label();
             this.tbIpRange = new System.Windows.Forms.TextBox();
@@ -100,20 +99,20 @@ namespace GoGo_Tester
             this.tlpConfig.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tlpConfig.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpConfig.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tlpConfig.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 160F));
+            this.tlpConfig.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 180F));
             this.tlpConfig.Controls.Add(this.label5, 0, 0);
             this.tlpConfig.Controls.Add(this.tbIpRange, 1, 0);
             this.tlpConfig.Controls.Add(this.bAddIpRange, 2, 0);
             this.tlpConfig.Controls.Add(this.tableLayoutPanel2, 0, 1);
             this.tlpConfig.Controls.Add(this.cbPools, 3, 0);
             this.tlpConfig.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpConfig.Location = new System.Drawing.Point(4, 611);
-            this.tlpConfig.Margin = new System.Windows.Forms.Padding(4);
+            this.tlpConfig.Location = new System.Drawing.Point(4, 676);
+            this.tlpConfig.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tlpConfig.Name = "tlpConfig";
             this.tlpConfig.RowCount = 2;
             this.tlpConfig.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tlpConfig.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpConfig.Size = new System.Drawing.Size(1246, 74);
+            this.tlpConfig.Size = new System.Drawing.Size(1406, 87);
             this.tlpConfig.TabIndex = 15;
             // 
             // label5
@@ -123,7 +122,7 @@ namespace GoGo_Tester
             this.label5.Location = new System.Drawing.Point(4, 0);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(83, 33);
+            this.label5.Size = new System.Drawing.Size(82, 40);
             this.label5.TabIndex = 0;
             this.label5.Text = "导入IP段：";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -131,10 +130,10 @@ namespace GoGo_Tester
             // tbIpRange
             // 
             this.tbIpRange.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tbIpRange.Location = new System.Drawing.Point(95, 4);
-            this.tbIpRange.Margin = new System.Windows.Forms.Padding(4);
+            this.tbIpRange.Location = new System.Drawing.Point(94, 5);
+            this.tbIpRange.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbIpRange.Name = "tbIpRange";
-            this.tbIpRange.Size = new System.Drawing.Size(906, 25);
+            this.tbIpRange.Size = new System.Drawing.Size(1041, 27);
             this.tbIpRange.TabIndex = 1;
             this.tbIpRange.Tag = "允许添加IP段，格式0-255,左边或者右边留空代表采用其最值。173.0-255.0-255.0-255代表173段所有IP。173.128.128.0/24与" +
     "173.128.128.0-255等价，173.128.128.0/18与173.128.128-255.0-255。";
@@ -145,11 +144,11 @@ namespace GoGo_Tester
             this.bAddIpRange.AutoSize = true;
             this.bAddIpRange.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.bAddIpRange.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.bAddIpRange.Location = new System.Drawing.Point(1009, 4);
-            this.bAddIpRange.Margin = new System.Windows.Forms.Padding(4);
+            this.bAddIpRange.Location = new System.Drawing.Point(1143, 5);
+            this.bAddIpRange.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.bAddIpRange.Name = "bAddIpRange";
-            this.bAddIpRange.Padding = new System.Windows.Forms.Padding(13, 0, 13, 0);
-            this.bAddIpRange.Size = new System.Drawing.Size(73, 25);
+            this.bAddIpRange.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
+            this.bAddIpRange.Size = new System.Drawing.Size(79, 30);
             this.bAddIpRange.TabIndex = 2;
             this.bAddIpRange.Text = "导入";
             this.bAddIpRange.UseVisualStyleBackColor = true;
@@ -167,8 +166,8 @@ namespace GoGo_Tester
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 27F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel2.Controls.Add(this.nTestCount, 5, 0);
             this.tableLayoutPanel2.Controls.Add(this.label2, 4, 0);
             this.tableLayoutPanel2.Controls.Add(this.nMaxThreads, 1, 0);
@@ -176,31 +175,31 @@ namespace GoGo_Tester
             this.tableLayoutPanel2.Controls.Add(this.label1, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.nPingTimeout, 3, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(4, 37);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(4, 45);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1238, 33);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1398, 37);
             this.tableLayoutPanel2.TabIndex = 27;
             // 
             // nTestCount
             // 
             this.nTestCount.Dock = System.Windows.Forms.DockStyle.Top;
-            this.nTestCount.Location = new System.Drawing.Point(893, 4);
-            this.nTestCount.Margin = new System.Windows.Forms.Padding(4);
+            this.nTestCount.Location = new System.Drawing.Point(1003, 5);
+            this.nTestCount.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.nTestCount.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
             this.nTestCount.Name = "nTestCount";
-            this.nTestCount.Size = new System.Drawing.Size(341, 25);
+            this.nTestCount.Size = new System.Drawing.Size(391, 27);
             this.nTestCount.TabIndex = 32;
             this.nTestCount.Tag = "";
             this.nTestCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nTestCount.Value = new decimal(new int[] {
-            3,
+            1,
             0,
             0,
             0});
@@ -210,10 +209,10 @@ namespace GoGo_Tester
             // 
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label2.Location = new System.Drawing.Point(818, 0);
+            this.label2.Location = new System.Drawing.Point(926, 0);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(67, 33);
+            this.label2.Size = new System.Drawing.Size(69, 37);
             this.label2.TabIndex = 31;
             this.label2.Tag = "对每个IP的测试次数，与IP的稳定性有关。";
             this.label2.Text = "测试次数";
@@ -228,8 +227,8 @@ namespace GoGo_Tester
             0,
             0,
             0});
-            this.nMaxThreads.Location = new System.Drawing.Point(49, 4);
-            this.nMaxThreads.Margin = new System.Windows.Forms.Padding(4);
+            this.nMaxThreads.Location = new System.Drawing.Point(51, 5);
+            this.nMaxThreads.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.nMaxThreads.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -241,7 +240,7 @@ namespace GoGo_Tester
             0,
             0});
             this.nMaxThreads.Name = "nMaxThreads";
-            this.nMaxThreads.Size = new System.Drawing.Size(339, 25);
+            this.nMaxThreads.Size = new System.Drawing.Size(391, 27);
             this.nMaxThreads.TabIndex = 27;
             this.nMaxThreads.Tag = "随机测试和标准测试的最大线程数";
             this.nMaxThreads.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -259,7 +258,7 @@ namespace GoGo_Tester
             this.label3.Location = new System.Drawing.Point(4, 0);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(37, 33);
+            this.label3.Size = new System.Drawing.Size(39, 37);
             this.label3.TabIndex = 8;
             this.label3.Tag = "随机测试和标准测试的最大线程数";
             this.label3.Text = "线程";
@@ -270,10 +269,10 @@ namespace GoGo_Tester
             // 
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label1.Location = new System.Drawing.Point(396, 0);
+            this.label1.Location = new System.Drawing.Point(450, 0);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(67, 33);
+            this.label1.Size = new System.Drawing.Size(69, 37);
             this.label1.TabIndex = 29;
             this.label1.Tag = "";
             this.label1.Text = "连接超时";
@@ -288,8 +287,8 @@ namespace GoGo_Tester
             0,
             0,
             0});
-            this.nPingTimeout.Location = new System.Drawing.Point(471, 4);
-            this.nPingTimeout.Margin = new System.Windows.Forms.Padding(4);
+            this.nPingTimeout.Location = new System.Drawing.Point(527, 5);
+            this.nPingTimeout.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.nPingTimeout.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -301,12 +300,12 @@ namespace GoGo_Tester
             0,
             0});
             this.nPingTimeout.Name = "nPingTimeout";
-            this.nPingTimeout.Size = new System.Drawing.Size(339, 25);
+            this.nPingTimeout.Size = new System.Drawing.Size(391, 27);
             this.nPingTimeout.TabIndex = 30;
             this.nPingTimeout.Tag = "Ping的延时。";
             this.nPingTimeout.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nPingTimeout.Value = new decimal(new int[] {
-            3000,
+            8000,
             0,
             0,
             0});
@@ -316,10 +315,10 @@ namespace GoGo_Tester
             // 
             this.cbPools.Dock = System.Windows.Forms.DockStyle.Left;
             this.cbPools.FormattingEnabled = true;
-            this.cbPools.Location = new System.Drawing.Point(1090, 4);
-            this.cbPools.Margin = new System.Windows.Forms.Padding(4);
+            this.cbPools.Location = new System.Drawing.Point(1230, 5);
+            this.cbPools.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cbPools.Name = "cbPools";
-            this.cbPools.Size = new System.Drawing.Size(151, 23);
+            this.cbPools.Size = new System.Drawing.Size(169, 28);
             this.cbPools.TabIndex = 28;
             this.cbPools.Tag = "选择IP池，启动时加载个人IP池，命名格式为 name.ip.txt，必须以 .ip.txt 结尾。内容允许为 192.168.0-255.0-55 或 192." +
     "168.0.0/16 或 www.google.com 。默认查询 google.com 的 spf 记录，可以新建 spf.txt 并写入域名更改查询的域名，" +
@@ -508,7 +507,7 @@ namespace GoGo_Tester
             this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 187F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 210F));
             this.tableLayoutPanel1.Controls.Add(this.msMain, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.dgvIpData, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.lTip, 0, 4);
@@ -516,8 +515,8 @@ namespace GoGo_Tester
             this.tableLayoutPanel1.Controls.Add(this.pbProgress, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.lProgress, 1, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(4, 4);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(4, 5);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 6;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -526,7 +525,7 @@ namespace GoGo_Tester
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1254, 745);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1414, 843);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // msMain
@@ -542,7 +541,8 @@ namespace GoGo_Tester
             this.mLoadIpPool});
             this.msMain.Location = new System.Drawing.Point(0, 0);
             this.msMain.Name = "msMain";
-            this.msMain.Size = new System.Drawing.Size(1254, 28);
+            this.msMain.Padding = new System.Windows.Forms.Padding(9, 3, 0, 3);
+            this.msMain.Size = new System.Drawing.Size(1414, 30);
             this.msMain.TabIndex = 3;
             this.msMain.Text = "menuStrip1";
             // 
@@ -605,22 +605,16 @@ namespace GoGo_Tester
             this.dgvIpData.ContextMenuStrip = this.cmsIpData;
             this.dgvIpData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvIpData.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2;
-            this.dgvIpData.Location = new System.Drawing.Point(4, 52);
-            this.dgvIpData.Margin = new System.Windows.Forms.Padding(4);
+            this.dgvIpData.Location = new System.Drawing.Point(4, 61);
+            this.dgvIpData.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvIpData.Name = "dgvIpData";
             this.dgvIpData.ReadOnly = true;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvIpData.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvIpData.RowHeadersWidth = 50;
-            this.dgvIpData.RowTemplate.Height = 23;
+            this.dgvIpData.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgvIpData.RowTemplate.DefaultCellStyle.NullValue = "N/A";
+            this.dgvIpData.RowTemplate.Height = 30;
             this.dgvIpData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvIpData.Size = new System.Drawing.Size(1246, 551);
+            this.dgvIpData.Size = new System.Drawing.Size(1406, 605);
             this.dgvIpData.TabIndex = 25;
             this.dgvIpData.Tag = "右键导入支持 IPv4 和 IPv6。G：可直连Google；A：可连接AppSpot，即GAE；NN：无效IP。";
             this.dgvIpData.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvIpData_RowPostPaint);
@@ -632,21 +626,21 @@ namespace GoGo_Tester
             this.tableLayoutPanel1.SetColumnSpan(this.lTip, 2);
             this.lTip.Dock = System.Windows.Forms.DockStyle.Top;
             this.lTip.ForeColor = System.Drawing.Color.DarkRed;
-            this.lTip.Location = new System.Drawing.Point(4, 689);
+            this.lTip.Location = new System.Drawing.Point(4, 768);
             this.lTip.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lTip.MinimumSize = new System.Drawing.Size(0, 56);
+            this.lTip.MinimumSize = new System.Drawing.Size(0, 75);
             this.lTip.Name = "lTip";
-            this.lTip.Padding = new System.Windows.Forms.Padding(4);
-            this.lTip.Size = new System.Drawing.Size(1246, 56);
+            this.lTip.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.lTip.Size = new System.Drawing.Size(1406, 75);
             this.lTip.TabIndex = 12;
             // 
             // pbProgress
             // 
             this.pbProgress.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pbProgress.Location = new System.Drawing.Point(4, 32);
-            this.pbProgress.Margin = new System.Windows.Forms.Padding(4);
+            this.pbProgress.Location = new System.Drawing.Point(4, 35);
+            this.pbProgress.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pbProgress.Name = "pbProgress";
-            this.pbProgress.Size = new System.Drawing.Size(1059, 12);
+            this.pbProgress.Size = new System.Drawing.Size(1196, 16);
             this.pbProgress.Step = 1;
             this.pbProgress.TabIndex = 23;
             // 
@@ -654,10 +648,10 @@ namespace GoGo_Tester
             // 
             this.lProgress.AutoSize = true;
             this.lProgress.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lProgress.Location = new System.Drawing.Point(1071, 28);
+            this.lProgress.Location = new System.Drawing.Point(1208, 30);
             this.lProgress.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lProgress.Name = "lProgress";
-            this.lProgress.Size = new System.Drawing.Size(179, 15);
+            this.lProgress.Size = new System.Drawing.Size(202, 20);
             this.lProgress.TabIndex = 24;
             this.lProgress.Tag = "随机测试 线程数 / 完成数 / 已测试数；标准测试：线程数 / 剩余数";
             this.lProgress.Text = "0 / 0";
@@ -666,15 +660,16 @@ namespace GoGo_Tester
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1262, 753);
+            this.ClientSize = new System.Drawing.Size(1422, 853);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.KeyPreview = true;
-            this.Margin = new System.Windows.Forms.Padding(4);
-            this.MinimumSize = new System.Drawing.Size(634, 488);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.MinimumSize = new System.Drawing.Size(711, 635);
             this.Name = "Form1";
-            this.Padding = new System.Windows.Forms.Padding(4);
+            this.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Text = "GoGo Tester";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -725,7 +720,6 @@ namespace GoGo_Tester
         private System.Windows.Forms.ToolStripMenuItem mRemoveIpsInClipbord;
         private System.Windows.Forms.Label lProgress;
         private System.Windows.Forms.NumericUpDown nMaxThreads;
-        private System.Windows.Forms.Label lTip;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.ToolStripMenuItem mStopTest;
         private System.Windows.Forms.ToolStripMenuItem mRndTest;
@@ -748,6 +742,7 @@ namespace GoGo_Tester
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.DataGridView dgvIpData;
+        private System.Windows.Forms.Label lTip;
     }
 }
 

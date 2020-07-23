@@ -1,11 +1,11 @@
-﻿using System;
+﻿using ARSoft.Tools.Net.Dns;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Text.RegularExpressions;
-using ARSoft.Tools.Net.Dns;
 
 namespace GoGo_Tester
 {
@@ -66,7 +66,7 @@ namespace GoGo_Tester
 
         public override string ToString()
         {
-            return GetIpAddress().ToString();
+            return GetIpAddress().ToString().ToUpper();
         }
 
         public static Ip Parse(string str)
@@ -175,9 +175,9 @@ namespace GoGo_Tester
         }
         private static readonly Regex RxSpfInclude = new Regex(@"include:([^\s]+)", RegexOptions.Compiled | RegexOptions.IgnoreCase);
         private static readonly Regex RxSpfIpv4 = new Regex(@"ip4:([^\s]+)", RegexOptions.Compiled | RegexOptions.IgnoreCase);
-        private static void Lookup(string domaim, DnsClient dns, ISet<string> caches, ISet<string> ranges)
+        private static void Lookup(string domain, DnsClient dns, ISet<string> caches, ISet<string> ranges)
         {
-            foreach (var resp in dns.Resolve(domaim, RecordType.Txt).AnswerRecords.Select(resp => resp.ToString()))
+            foreach (var resp in dns.Resolve(domain, RecordType.Txt).AnswerRecords.Select(resp => resp.ToString()))
             {
                 foreach (Match m in RxSpfIpv4.Matches(resp))
                     ranges.Add(m.Groups[1].Value);

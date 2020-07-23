@@ -42,7 +42,7 @@ namespace GoGo_Tester
             Monitor.Exit(q);
         }
 
-        public Form1() 
+        public Form1()
         {
             InitializeComponent();
         }
@@ -85,6 +85,7 @@ namespace GoGo_Tester
             IpTable.Columns.Add(new DataColumn("sslc", typeof(string)));
             IpTable.Columns.Add(new DataColumn("pass", typeof(string)));
             IpTable.Columns.Add(new DataColumn("band", typeof(string)));
+            IpTable.Columns.Add(new DataColumn("geo", typeof(string)));
 
             BindingSource.DataSource = IpTable;
             dgvIpData.DataSource = BindingSource;
@@ -98,6 +99,8 @@ namespace GoGo_Tester
             dgvIpData.Columns[3].HeaderText = "计数";
             dgvIpData.Columns[4].Width = 80;
             dgvIpData.Columns[4].HeaderText = "速度";
+            dgvIpData.Columns[5].Width = 80;
+            dgvIpData.Columns[5].HeaderText = "位置";
 
             StdTestTimer.Interval = 10;
             StdTestTimer.Elapsed += StdTestTimerElapsed;
@@ -340,7 +343,7 @@ namespace GoGo_Tester
                                 ssls.AuthenticateAsClient(string.Empty);
                                 if (ssls.IsAuthenticated)
                                 {
-                                    var data = Encoding.UTF8.GetBytes("GET /inputtools/ HTTP/1.1\r\nHost: www.google.com\r\nConnection: close\r\n\r\n");
+                                    var data = Encoding.UTF8.GetBytes("GET /download?family=Roboto HTTP/1.1\r\nHost: fonts.google.com\r\nConnection: close\r\n\r\n");
                                     var time = Watch.ElapsedMilliseconds;
                                     ssls.Write(data, 0, data.Length);
                                     ssls.Flush();
@@ -486,7 +489,7 @@ namespace GoGo_Tester
                                         info.HttpMsg = "GVS";
                                     }
                                     else if (text.Contains("Google Frontend"))
-                                    { 
+                                    {
                                         info.HttpOk = true;
                                         info.HttpMsg = "GAE";
                                     }
@@ -561,13 +564,24 @@ namespace GoGo_Tester
                 {
                     var row = IpTable.NewRow();
                     row[0] = addr;
-                    row[1] = "n/a";
-                    row[2] = "n/a";
-                    row[3] = "n/a";
-                    row[4] = "n/a";
+                    row[1] = "N/A";
+                    row[2] = "N/A";
+                    row[3] = "N/A";
+                    row[4] = "N/A";
+                    try
+                    {
+                        row[5] = "N/A";
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
                     IpTable.Rows.Add(row);
                 }
-                catch (Exception) { }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
             }
         }
         private void ImportIps(IEnumerable<Ip> addrs)
@@ -609,24 +623,24 @@ namespace GoGo_Tester
             if (InvokeRequired)
                 return (DataRow[])Invoke(new MethodInvoker(() => SelectPortNa()));
             else
-                return IpTable.Select("port = 'n/a'");
+                return IpTable.Select("port = 'N/A'");
         }
         private DataRow[] SelectBandNa()
         {
             if (InvokeRequired)
                 return (DataRow[])Invoke(new MethodInvoker(() => SelectBandNa()));
             else
-                return IpTable.Select("band = 'n/a' and port like 'OK%' and sslc not like 'NN%'");
+                return IpTable.Select("band = 'N/A' and port like 'OK%' and sslc not like 'NN%'");
         }
         private void SetAllNa()
         {
             foreach (var row in IpTable.Select())
-                row[4] = row[3] = row[2] = row[1] = "n/a";
+                row[4] = row[3] = row[2] = row[1] = "N/A";
         }
         private void SetNa(string coln)
         {
             foreach (var row in IpTable.Select())
-                row[coln] = "n/a";
+                row[coln] = "N/A";
         }
 
 
@@ -717,21 +731,35 @@ namespace GoGo_Tester
 
             WaitQueue.Clear();
 
-            var rows = SelectBandNa();
+            if (dgvIpData.SelectedRows.Count > 1)
+            {
+                foreach (DataGridViewRow row in dgvIpData.SelectedRows)
+                {
+                    WaitQueue.Enqueue(Ip.Parse(row.Cells[0].Value.ToString()));
+                    row.Cells[4].Value = "N/A";
+                }
+                pbProgress.Value = 0;
+                pbProgress.Maximum = dgvIpData.SelectedRows.Count;
+            }
+            else
+            {
 
-            if (rows.Length == 0)
-                if (MessageBox.Show(this, "没有发现未测试的IP！是否重复测试已测试的IP？", "请确认操作", MessageBoxButtons.OKCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2) == DialogResult.OK)
-                    SetNa("band");
-                else
-                    return;
+                var rows = SelectBandNa();
 
-            rows = SelectBandNa();
+                if (rows.Length == 0)
+                    if (MessageBox.Show(this, "没有发现未测试的IP！是否重复测试已测试的IP？", "请确认操作", MessageBoxButtons.OKCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button2) == DialogResult.OK)
+                        SetNa("band");
+                    else
+                        return;
 
-            pbProgress.Maximum = rows.Length;
-            pbProgress.Value = 0;
+                rows = SelectBandNa();
 
-            foreach (var row in rows)
-                WaitQueue.Enqueue(Ip.Parse(row[0].ToString()));
+                pbProgress.Maximum = rows.Length;
+                pbProgress.Value = 0;
+
+                foreach (var row in rows)
+                    WaitQueue.Enqueue(Ip.Parse(row[0].ToString()));
+            }
 
             BndTestRunning = true;
             BndTestTimer.Start();
@@ -767,9 +795,9 @@ namespace GoGo_Tester
             if (dgvIpData.SelectedRows.Count > 1)
             {
                 foreach (DataGridViewRow row in dgvIpData.SelectedRows)
-                { 
+                {
                     WaitQueue.Enqueue(Ip.Parse(row.Cells[0].Value.ToString()));
-                    row.Cells[4].Value = row.Cells[3].Value = row.Cells[2].Value = row.Cells[1].Value = "n/a";
+                    row.Cells[4].Value = row.Cells[3].Value = row.Cells[2].Value = row.Cells[1].Value = "N/A";
                 }
                 pbProgress.Value = 0;
                 pbProgress.Maximum = dgvIpData.SelectedRows.Count;
@@ -1068,14 +1096,14 @@ namespace GoGo_Tester
 
         private DataRow[] GetValidIps()
         {
-            var rows = SelectByExpr(string.Format("sslc <> 'n/a' and sslc not like 'NN%'"), "port asc");
+            var rows = SelectByExpr(string.Format("sslc <> 'N/A' and sslc not like 'NN%'"), "port asc");
             return rows.ToArray();
         }
 
         private DataRow[] GetInvalidIps()
         {
             return SelectByExpr(
-                string.Format("(port <> 'n/a' and port not like 'OK%') or (sslc <> 'n/a' and sslc like 'NN%')"));
+                string.Format("(port <> 'N/A' and port not like 'OK%') or (sslc <> 'N/A' and sslc like 'NN%')"));
         }
 
 
