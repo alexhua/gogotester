@@ -115,6 +115,16 @@ namespace GoGo_Tester.Properties {
         }
         
         /// <summary>
+        ///   查找 System.Byte[] 类型的本地化资源。
+        /// </summary>
+        internal static byte[] IP2Location {
+            get {
+                object obj = ResourceManager.GetObject("IP2Location", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   查找类似于 System.IO.MemoryStream 的 System.IO.UnmanagedMemoryStream 类型的本地化资源。
         /// </summary>
         internal static System.IO.UnmanagedMemoryStream Windows_Ding {

@@ -72,6 +72,9 @@ namespace GoGo_Tester
         private volatile bool RndTestRunning;
         private volatile bool BndTestRunning;
 
+        private IP2Location.Component mIpDbV4;
+        private IP2Location.Component mIpDbV6;
+
         public static bool IsIpLoad = false;
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -111,12 +114,29 @@ namespace GoGo_Tester
             BndTestTimer.Interval = 10;
             BndTestTimer.Elapsed += BndTestTimer_Elapsed;
 
+            loadIpGeoDb();
             LoadTestCache();
 
             Watch.Start();
         }
 
         private static readonly Regex RxDomain = new Regex(@"[\w\-\.]+", RegexOptions.Compiled);
+
+        private void loadIpGeoDb()
+        {
+            mIpDbV4 = new IP2Location.Component
+            {
+                IPDatabasePath = @"IP2LOCATION-LITE-DB1.BIN"
+            };
+            mIpDbV6 = new IP2Location.Component
+            {
+                IPDatabasePath = @"IP2LOCATION-LITE-DB1.IPV6.BIN"
+            };
+            if (File.Exists("IP2LOCATION-LITE-DB3.BIN"))
+                mIpDbV4.IPDatabasePath = @"IP2LOCATION-LITE-DB3.BIN";
+            if (File.Exists("IP2LOCATION-LITE-DB3.IPV6.BIN"))
+                mIpDbV6.IPDatabasePath = @"IP2LOCATION-LITE-DB3.IPV6.BIN";
+        }
         private void LoadIpPools()
         {
             PoolDic.Add("@Inner", IpPool.CreateFromText(Resources.InnerIpSet));
@@ -570,7 +590,14 @@ namespace GoGo_Tester
                     row[4] = "N/A";
                     try
                     {
-                        row[5] = "N/A";
+                        IP2Location.IPResult result;
+                        if (addr.GetAddressFamily() == AddressFamily.InterNetwork)
+                            result = mIpDbV4?.IPQuery(addr.ToString());
+                        else
+                            result = mIpDbV6?.IPQuery(addr.ToString());
+                        row[5] = result?.CountryShort;
+                        if (result != null && !result.City.StartsWith("This"))
+                            row[5] += " - " + result.City;
                     }
                     catch (Exception e)
                     {

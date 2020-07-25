@@ -127,6 +127,9 @@
   <data name="InnerIpSet" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\InnerIpSet.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
+  <data name="IP2Location" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\IP2Location.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="Windows_Ding" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Windows Ding.wav;System.IO.MemoryStream, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>

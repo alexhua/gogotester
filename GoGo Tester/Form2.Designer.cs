@@ -46,15 +46,15 @@
             0,
             0,
             0});
-            this.numericUpDown1.Location = new System.Drawing.Point(4, 4);
-            this.numericUpDown1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericUpDown1.Location = new System.Drawing.Point(4, 5);
+            this.numericUpDown1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.numericUpDown1.Maximum = new decimal(new int[] {
             1000,
             0,
             0,
             0});
             this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(259, 25);
+            this.numericUpDown1.Size = new System.Drawing.Size(292, 27);
             this.numericUpDown1.TabIndex = 0;
             this.numericUpDown1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.numericUpDown1.Value = new decimal(new int[] {
@@ -75,12 +75,12 @@
             this.tableLayoutPanel1.Controls.Add(this.bOK, 1, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(267, 89);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(300, 119);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // bCancel
@@ -88,10 +88,10 @@
             this.bCancel.AutoSize = true;
             this.bCancel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.bCancel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.bCancel.Location = new System.Drawing.Point(4, 48);
-            this.bCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.bCancel.Location = new System.Drawing.Point(4, 64);
+            this.bCancel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.bCancel.Name = "bCancel";
-            this.bCancel.Size = new System.Drawing.Size(125, 25);
+            this.bCancel.Size = new System.Drawing.Size(142, 30);
             this.bCancel.TabIndex = 1;
             this.bCancel.Text = "取消(&C)";
             this.bCancel.UseVisualStyleBackColor = true;
@@ -102,10 +102,10 @@
             this.bOK.AutoSize = true;
             this.bOK.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.bOK.Dock = System.Windows.Forms.DockStyle.Top;
-            this.bOK.Location = new System.Drawing.Point(137, 48);
-            this.bOK.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.bOK.Location = new System.Drawing.Point(154, 64);
+            this.bOK.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.bOK.Name = "bOK";
-            this.bOK.Size = new System.Drawing.Size(126, 25);
+            this.bOK.Size = new System.Drawing.Size(142, 30);
             this.bOK.TabIndex = 2;
             this.bOK.Text = "确定(&O)";
             this.bOK.UseVisualStyleBackColor = true;
@@ -113,14 +113,15 @@
             // 
             // Form2
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(267, 89);
+            this.ClientSize = new System.Drawing.Size(300, 119);
             this.ControlBox = false;
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Form2";

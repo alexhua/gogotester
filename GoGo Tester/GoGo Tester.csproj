@@ -61,6 +61,9 @@
     <Reference Include="ARSoft.Tools.Net, Version=2.1.0.0, Culture=neutral, PublicKeyToken=1940454cd762ec57, processorArchitecture=MSIL">
       <HintPath>..\packages\ARSoft.Tools.Net.2.1.4\lib\net45\ARSoft.Tools.Net.dll</HintPath>
     </Reference>
+    <Reference Include="IP2Location, Version=8.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\IP2Location.IPGeolocation.8.4.0\lib\net472\IP2Location.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -141,6 +144,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ARSoft.Tools.Net.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\IP2Location.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -106,7 +106,7 @@ namespace GoGo_Tester
             this.tlpConfig.Controls.Add(this.tableLayoutPanel2, 0, 1);
             this.tlpConfig.Controls.Add(this.cbPools, 3, 0);
             this.tlpConfig.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpConfig.Location = new System.Drawing.Point(4, 676);
+            this.tlpConfig.Location = new System.Drawing.Point(4, 701);
             this.tlpConfig.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tlpConfig.Name = "tlpConfig";
             this.tlpConfig.RowCount = 2;
@@ -593,8 +593,10 @@ namespace GoGo_Tester
             // 
             this.mLoadIpPool.Name = "mLoadIpPool";
             this.mLoadIpPool.Size = new System.Drawing.Size(99, 24);
+            this.mLoadIpPool.Tag = "加载随机测试IP池";
             this.mLoadIpPool.Text = "加载IP池(&L)";
             this.mLoadIpPool.Click += new System.EventHandler(this.mLoadIpPool_Click);
+            this.mLoadIpPool.MouseEnter += new System.EventHandler(this.Tip_MouseEnter);
             // 
             // dgvIpData
             // 
@@ -614,9 +616,10 @@ namespace GoGo_Tester
             this.dgvIpData.RowTemplate.DefaultCellStyle.NullValue = "N/A";
             this.dgvIpData.RowTemplate.Height = 30;
             this.dgvIpData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvIpData.Size = new System.Drawing.Size(1406, 605);
+            this.dgvIpData.Size = new System.Drawing.Size(1406, 630);
             this.dgvIpData.TabIndex = 25;
-            this.dgvIpData.Tag = "右键导入支持 IPv4 和 IPv6。G：可直连Google；A：可连接AppSpot，即GAE；NN：无效IP。";
+            this.dgvIpData.Tag = "右键导入支持 IPv4 和 IPv6。G：可直连Google；A：可连接AppSpot，即GAE；NN：无效IP。地理位置数据由 IP2Location™ 提供：" +
+    "https://lite.ip2location.com/database/ip-country。";
             this.dgvIpData.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvIpData_RowPostPaint);
             this.dgvIpData.MouseEnter += new System.EventHandler(this.Tip_MouseEnter);
             // 
@@ -626,12 +629,12 @@ namespace GoGo_Tester
             this.tableLayoutPanel1.SetColumnSpan(this.lTip, 2);
             this.lTip.Dock = System.Windows.Forms.DockStyle.Top;
             this.lTip.ForeColor = System.Drawing.Color.DarkRed;
-            this.lTip.Location = new System.Drawing.Point(4, 768);
+            this.lTip.Location = new System.Drawing.Point(4, 793);
             this.lTip.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lTip.MinimumSize = new System.Drawing.Size(0, 75);
+            this.lTip.MinimumSize = new System.Drawing.Size(0, 50);
             this.lTip.Name = "lTip";
             this.lTip.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.lTip.Size = new System.Drawing.Size(1406, 75);
+            this.lTip.Size = new System.Drawing.Size(1406, 50);
             this.lTip.TabIndex = 12;
             // 
             // pbProgress
@@ -660,6 +663,7 @@ namespace GoGo_Tester
             // 
             // Form1
             // 
+            this.AcceptButton = this.bAddIpRange;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1422, 853);
