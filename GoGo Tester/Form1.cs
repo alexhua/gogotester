@@ -124,18 +124,21 @@ namespace GoGo_Tester
 
         private void loadIpGeoDb()
         {
+            var basePath = Path.GetDirectoryName(Application.ExecutablePath);
             mIpDbV4 = new IP2Location.Component
             {
-                IPDatabasePath = @"IP2LOCATION-LITE-DB1.BIN"
+                IPDatabasePath = basePath + @"\IP2LOCATION-LITE-DB1.BIN"
             };
             mIpDbV6 = new IP2Location.Component
             {
-                IPDatabasePath = @"IP2LOCATION-LITE-DB1.IPV6.BIN"
+                IPDatabasePath = basePath + @"\IP2LOCATION-LITE-DB1.IPV6.BIN"
             };
-            if (File.Exists("IP2LOCATION-LITE-DB3.BIN"))
-                mIpDbV4.IPDatabasePath = @"IP2LOCATION-LITE-DB3.BIN";
-            if (File.Exists("IP2LOCATION-LITE-DB3.IPV6.BIN"))
-                mIpDbV6.IPDatabasePath = @"IP2LOCATION-LITE-DB3.IPV6.BIN";
+            if (File.Exists(basePath + @"\IP2LOCATION-LITE-DB3.BIN"))
+                mIpDbV4.IPDatabasePath = basePath + @"\IP2LOCATION-LITE-DB3.BIN";
+            if (File.Exists(basePath + @"\IP2LOCATION-LITE-DB3.IPV6.BIN"))
+                mIpDbV6.IPDatabasePath = basePath + @"\IP2LOCATION-LITE-DB3.IPV6.BIN";
+            mIpDbV4.UseMemoryMappedFile = true;
+            mIpDbV6.UseMemoryMappedFile = true;
         }
         private void LoadIpPools()
         {
@@ -718,6 +721,8 @@ namespace GoGo_Tester
             StopTest();
             while (ThreadQueue.Count > 0)
                 Application.DoEvents();
+            mIpDbV4.Close();
+            mIpDbV6.Close();
         }
 
         private void mImportIpsInClipbord_Click(object sender, EventArgs e)
