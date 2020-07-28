@@ -72,8 +72,7 @@ namespace GoGo_Tester
         private volatile bool RndTestRunning;
         private volatile bool BndTestRunning;
 
-        private IP2Location.Component mIpDbV4;
-        private IP2Location.Component mIpDbV6;
+        private IP2Location.Component mIpDb;
 
         public static bool IsIpLoad = false;
         private void Form1_Load(object sender, EventArgs e)
@@ -102,7 +101,7 @@ namespace GoGo_Tester
             dgvIpData.Columns[3].HeaderText = "计数";
             dgvIpData.Columns[4].Width = 80;
             dgvIpData.Columns[4].HeaderText = "速度";
-            dgvIpData.Columns[5].Width = 80;
+            dgvIpData.Columns[5].Width = 160;
             dgvIpData.Columns[5].HeaderText = "位置";
 
             StdTestTimer.Interval = 10;
@@ -125,20 +124,18 @@ namespace GoGo_Tester
         private void loadIpGeoDb()
         {
             var basePath = Path.GetDirectoryName(Application.ExecutablePath);
-            mIpDbV4 = new IP2Location.Component
+            mIpDb = new IP2Location.Component
             {
                 IPDatabasePath = basePath + @"\IP2LOCATION-LITE-DB1.BIN"
             };
-            mIpDbV6 = new IP2Location.Component
-            {
-                IPDatabasePath = basePath + @"\IP2LOCATION-LITE-DB1.IPV6.BIN"
-            };
+            if (File.Exists(basePath + @"\IP2LOCATION-LITE-DB1.IPV6.BIN"))
+                mIpDb.IPDatabasePath = basePath + @"\IP2LOCATION-LITE-DB3.BIN";
             if (File.Exists(basePath + @"\IP2LOCATION-LITE-DB3.BIN"))
-                mIpDbV4.IPDatabasePath = basePath + @"\IP2LOCATION-LITE-DB3.BIN";
+                mIpDb.IPDatabasePath = basePath + @"\IP2LOCATION-LITE-DB3.BIN";
             if (File.Exists(basePath + @"\IP2LOCATION-LITE-DB3.IPV6.BIN"))
-                mIpDbV6.IPDatabasePath = basePath + @"\IP2LOCATION-LITE-DB3.IPV6.BIN";
-            mIpDbV4.UseMemoryMappedFile = true;
-            mIpDbV6.UseMemoryMappedFile = true;
+                mIpDb.IPDatabasePath = basePath + @"\IP2LOCATION-LITE-DB3.IPV6.BIN";
+            mIpDb.UseMemoryMappedFile = true;
+            mIpDb.MapFileName = "GeoIpDB.bin";
         }
         private void LoadIpPools()
         {
@@ -436,7 +433,8 @@ namespace GoGo_Tester
             try
             {
                 var time = Watch.ElapsedMilliseconds;
-                if (socket.BeginConnect(info.Target, null, null).AsyncWaitHandle.WaitOne(Config.ConnTimeout)
+                if (socket.BeginConnect(info.Target, new AsyncCallback(ConnectCallback),
+                        socket).AsyncWaitHandle.WaitOne(Config.ConnTimeout)
                     && socket.Connected)
                 {
 
@@ -465,6 +463,20 @@ namespace GoGo_Tester
             }
             return info.PortOk;
         }
+
+        private static void ConnectCallback(IAsyncResult ar)
+        {
+            try
+            {
+                Socket client = (Socket)ar.AsyncState;
+                client.EndConnect(ar);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+        }
+
         private static readonly Regex RxResult = new Regex(@"^(HTTP/... (\d+).*|Server:\s*(\w.*))$", RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.Multiline);
         private bool TestHttpViaSocket(Socket socket, TestInfo info)
         {
@@ -593,11 +605,7 @@ namespace GoGo_Tester
                     row[4] = "N/A";
                     try
                     {
-                        IP2Location.IPResult result;
-                        if (addr.GetAddressFamily() == AddressFamily.InterNetwork)
-                            result = mIpDbV4?.IPQuery(addr.ToString());
-                        else
-                            result = mIpDbV6?.IPQuery(addr.ToString());
+                        var result = mIpDb.IPQuery(addr.ToString());
                         row[5] = result?.CountryShort;
                         if (result != null && !result.City.StartsWith("This"))
                             row[5] += " - " + result.City;
@@ -721,8 +729,7 @@ namespace GoGo_Tester
             StopTest();
             while (ThreadQueue.Count > 0)
                 Application.DoEvents();
-            mIpDbV4.Close();
-            mIpDbV6.Close();
+            mIpDb.Close();
         }
 
         private void mImportIpsInClipbord_Click(object sender, EventArgs e)

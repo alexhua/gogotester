@@ -305,7 +305,7 @@ namespace GoGo_Tester
             this.nPingTimeout.Tag = "Ping的延时。";
             this.nPingTimeout.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nPingTimeout.Value = new decimal(new int[] {
-            8000,
+            5000,
             0,
             0,
             0});

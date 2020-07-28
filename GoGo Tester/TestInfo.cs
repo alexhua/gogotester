@@ -22,10 +22,10 @@ namespace GoGo_Tester
             Port = port;
             HttpOk = PortOk = false;
             PortTime = 0;
-            PortMsg = HttpMsg = "n/a";
+            PortMsg = HttpMsg = "N/A";
             PassCount = 0;
-            Bandwidth = "n/a";
-            CName = "n/a";
+            Bandwidth = "N/A";
+            CName = "N/A";
         }
 
         public TestInfo(IPAddress addr) : this(new Ip(addr.GetAddressBytes())) { }
