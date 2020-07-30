@@ -56,7 +56,7 @@ namespace GoGo_Tester
 
         private readonly Dictionary<string, IpPool> PoolDic = new Dictionary<string, IpPool>();
         private string CurAddrPool;
-        private List<Ip> CurAddrList = new List<Ip>();
+        private readonly List<Ip> CurAddrList = new List<Ip>();
         private readonly DataTable IpTable = new DataTable();
         private readonly BindingSource BindingSource = new BindingSource();
         private readonly Timer StdTestTimer = new Timer();
@@ -74,7 +74,7 @@ namespace GoGo_Tester
 
         private IP2Location.Component mIpDb;
 
-        public static bool IsIpLoad = false;
+        private bool IsIpLoad = false;
         private void Form1_Load(object sender, EventArgs e)
         {
             Icon = Resources.GoGo_logo;
@@ -113,7 +113,7 @@ namespace GoGo_Tester
             BndTestTimer.Interval = 10;
             BndTestTimer.Elapsed += BndTestTimer_Elapsed;
 
-            loadIpGeoDb();
+            LoadIpGeoDb();
             LoadTestCache();
 
             Watch.Start();
@@ -121,7 +121,7 @@ namespace GoGo_Tester
 
         private static readonly Regex RxDomain = new Regex(@"[\w\-\.]+", RegexOptions.Compiled);
 
-        private void loadIpGeoDb()
+        private void LoadIpGeoDb()
         {
             var basePath = Path.GetDirectoryName(Application.ExecutablePath);
             mIpDb = new IP2Location.Component
@@ -353,17 +353,28 @@ namespace GoGo_Tester
             {
                 try
                 {
-                    if (socket.BeginConnect(info.Target, null, null).AsyncWaitHandle.WaitOne(Config.ConnTimeout * m) &&
-                        socket.Connected)
+                    if (socket.BeginConnect(info.Target, new AsyncCallback(ConnectCallback),
+                        socket).AsyncWaitHandle.WaitOne(Config.ConnTimeout * m) && socket.Connected)
                     {
                         using (var nets = new NetworkStream(socket))
                         {
-                            using (var ssls = new SslStream(nets, false, (a, b, c, d) => true))
+                            using (var ssls = new SslStream(nets, false, (sender, cert, chain, sslpe) =>
+                            {
+                                var str = cert.Subject;
+                                var len = str.IndexOf(",", 3) - 3;
+                                info.CName = str.Substring(3, len > 0 ? len : str.Length - 3);
+                                return true;
+                            }))
                             {
                                 ssls.AuthenticateAsClient(string.Empty);
                                 if (ssls.IsAuthenticated)
                                 {
-                                    var data = Encoding.UTF8.GetBytes("GET /download?family=Roboto HTTP/1.1\r\nHost: fonts.google.com\r\nConnection: close\r\n\r\n");
+                                    var testHeader = "GET /download?family=Roboto HTTP/1.1\r\nHost: fonts.google.com\r\nConnection: close\r\n\r\n";
+                                    if (info.CName.Contains("appspot"))
+                                    {
+                                        testHeader = "GET /s/export_report1.csv HTTP/1.1\r\nHost: testsafebrowsing.appspot.com\r\nConnection: close\r\n\r\n";
+                                    }
+                                    var data = Encoding.UTF8.GetBytes(testHeader);
                                     var time = Watch.ElapsedMilliseconds;
                                     ssls.Write(data, 0, data.Length);
                                     ssls.Flush();
@@ -464,12 +475,12 @@ namespace GoGo_Tester
             return info.PortOk;
         }
 
-        private static void ConnectCallback(IAsyncResult ar)
+        private void ConnectCallback(IAsyncResult ar)
         {
             try
             {
                 Socket client = (Socket)ar.AsyncState;
-                client.EndConnect(ar);
+                if (client.Connected) client.EndConnect(ar);
             }
             catch (Exception e)
             {
@@ -513,17 +524,17 @@ namespace GoGo_Tester
                                 {
                                     info.HttpMsg = "NN";
 
-                                    if (text.Contains("gws"))
+                                    if (text.Contains("Server: gws"))
                                     {
                                         info.HttpOk = true;
                                         info.HttpMsg = "GWS";
                                     }
-                                    else if (text.Contains("Server: gvs 1.0"))
+                                    else if (text.Contains("Server: gvs"))
                                     {
                                         info.HttpOk = true;
                                         info.HttpMsg = "GVS";
                                     }
-                                    else if (text.Contains("Google Frontend"))
+                                    else if (text.Contains("Server: Google Frontend"))
                                     {
                                         info.HttpOk = true;
                                         info.HttpMsg = "GAE";
@@ -802,7 +813,7 @@ namespace GoGo_Tester
 
             BndTestRunning = true;
             BndTestTimer.Start();
-            tlpConfig.Enabled = false;
+            tIpConfig.Enabled = mRndTest.Enabled = mStdTest.Enabled = mBandTest.Enabled = false;
         }
         private void mRndTest_Click(object sender, EventArgs e)
         {
@@ -823,7 +834,7 @@ namespace GoGo_Tester
             RndTestRunning = true;
             RndTestTimer.Start();
 
-            tlpConfig.Enabled = false;
+            tIpConfig.Enabled = mRndTest.Enabled = mStdTest.Enabled = mBandTest.Enabled = false;
         }
         private void mStdTest_Click(object sender, EventArgs e)
         {
@@ -860,7 +871,7 @@ namespace GoGo_Tester
             }
             StdTestRunning = true;
             StdTestTimer.Start();
-            tlpConfig.Enabled = false;
+            tIpConfig.Enabled = mRndTest.Enabled = mStdTest.Enabled = mBandTest.Enabled = false;
         }
 
         private void mRemoveAllIps_Click(object sender, EventArgs e)
@@ -969,7 +980,7 @@ namespace GoGo_Tester
             else
             {
                 StdTestRunning = RndTestRunning = BndTestRunning = false;
-                tlpConfig.Enabled = true;
+                tIpConfig.Enabled = mRndTest.Enabled = mStdTest.Enabled = mBandTest.Enabled = true;
             }
         }
         private void mExportAllIps_Click(object sender, EventArgs e)

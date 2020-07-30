@@ -31,7 +31,7 @@ namespace GoGo_Tester
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.tlpConfig = new System.Windows.Forms.TableLayoutPanel();
+            this.tIpConfig = new System.Windows.Forms.TableLayoutPanel();
             this.label5 = new System.Windows.Forms.Label();
             this.tbIpRange = new System.Windows.Forms.TextBox();
             this.bAddIpRange = new System.Windows.Forms.Button();
@@ -79,7 +79,7 @@ namespace GoGo_Tester
             this.lTip = new System.Windows.Forms.Label();
             this.pbProgress = new System.Windows.Forms.ProgressBar();
             this.lProgress = new System.Windows.Forms.Label();
-            this.tlpConfig.SuspendLayout();
+            this.tIpConfig.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nTestCount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nMaxThreads)).BeginInit();
@@ -90,30 +90,30 @@ namespace GoGo_Tester
             ((System.ComponentModel.ISupportInitialize)(this.dgvIpData)).BeginInit();
             this.SuspendLayout();
             // 
-            // tlpConfig
+            // tIpConfig
             // 
-            this.tlpConfig.AutoSize = true;
-            this.tlpConfig.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tlpConfig.ColumnCount = 4;
-            this.tableLayoutPanel1.SetColumnSpan(this.tlpConfig, 2);
-            this.tlpConfig.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tlpConfig.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpConfig.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tlpConfig.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 180F));
-            this.tlpConfig.Controls.Add(this.label5, 0, 0);
-            this.tlpConfig.Controls.Add(this.tbIpRange, 1, 0);
-            this.tlpConfig.Controls.Add(this.bAddIpRange, 2, 0);
-            this.tlpConfig.Controls.Add(this.tableLayoutPanel2, 0, 1);
-            this.tlpConfig.Controls.Add(this.cbPools, 3, 0);
-            this.tlpConfig.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpConfig.Location = new System.Drawing.Point(4, 701);
-            this.tlpConfig.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tlpConfig.Name = "tlpConfig";
-            this.tlpConfig.RowCount = 2;
-            this.tlpConfig.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlpConfig.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpConfig.Size = new System.Drawing.Size(1406, 87);
-            this.tlpConfig.TabIndex = 15;
+            this.tIpConfig.AutoSize = true;
+            this.tIpConfig.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tIpConfig.ColumnCount = 4;
+            this.tableLayoutPanel1.SetColumnSpan(this.tIpConfig, 2);
+            this.tIpConfig.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tIpConfig.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tIpConfig.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tIpConfig.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 180F));
+            this.tIpConfig.Controls.Add(this.label5, 0, 0);
+            this.tIpConfig.Controls.Add(this.tbIpRange, 1, 0);
+            this.tIpConfig.Controls.Add(this.bAddIpRange, 2, 0);
+            this.tIpConfig.Controls.Add(this.tableLayoutPanel2, 0, 1);
+            this.tIpConfig.Controls.Add(this.cbPools, 3, 0);
+            this.tIpConfig.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tIpConfig.Location = new System.Drawing.Point(4, 701);
+            this.tIpConfig.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tIpConfig.Name = "tIpConfig";
+            this.tIpConfig.RowCount = 2;
+            this.tIpConfig.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tIpConfig.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tIpConfig.Size = new System.Drawing.Size(1406, 87);
+            this.tIpConfig.TabIndex = 15;
             // 
             // label5
             // 
@@ -159,7 +159,7 @@ namespace GoGo_Tester
             this.tableLayoutPanel2.AutoSize = true;
             this.tableLayoutPanel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel2.ColumnCount = 6;
-            this.tlpConfig.SetColumnSpan(this.tableLayoutPanel2, 4);
+            this.tIpConfig.SetColumnSpan(this.tableLayoutPanel2, 4);
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
@@ -511,7 +511,7 @@ namespace GoGo_Tester
             this.tableLayoutPanel1.Controls.Add(this.msMain, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.dgvIpData, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.lTip, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.tlpConfig, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.tIpConfig, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.pbProgress, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.lProgress, 1, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -677,8 +677,8 @@ namespace GoGo_Tester
             this.Text = "GoGo Tester";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.tlpConfig.ResumeLayout(false);
-            this.tlpConfig.PerformLayout();
+            this.tIpConfig.ResumeLayout(false);
+            this.tIpConfig.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nTestCount)).EndInit();
@@ -699,7 +699,7 @@ namespace GoGo_Tester
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel tlpConfig;
+        private System.Windows.Forms.TableLayoutPanel tIpConfig;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox tbIpRange;
         private System.Windows.Forms.Button bAddIpRange;
